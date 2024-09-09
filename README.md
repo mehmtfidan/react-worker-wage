@@ -1,67 +1,63 @@
-# Getting Started with Create React App
+# Worker Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application is a simple worker management tool built with React. It allows users to add workers with details like name, surname, gender, and wage, and also to delete workers from the list. The app ensures data validation to maintain accurate worker information and prevent missing or incorrect details.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Add New Workers**: Users can add new workers to the list by filling out a form with the following details:
+  - Name
+  - Surname
+  - Gender (Male/Female)
+  - Wage (must be higher than a predefined minimum wage)
 
-### `npm start`
+- **Form Validation**: The form ensures that all fields are properly filled before submitting:
+  - Name and surname are required.
+  - Gender selection is mandatory (radio buttons for Male or Female).
+  - The wage must be greater than or equal to the minimum wage (5000 by default).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Error Handling**: If any field is missing or invalid, the user is shown an error modal with a relevant message, ensuring that they fill the form correctly.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Delete Workers**: Users can delete workers from the list by clicking on the worker's entry. Before deletion, the app confirms the action using a modal, preventing accidental deletions.
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React**: The core framework used for building the app.
+- **CSS/ Tailwind**: Used for styling the components.
+- **State Management**: Handled using React’s `useState` hook.
+- **Error Modal**: A reusable modal component to display error messages and confirmations.
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone this repository:
+    ```bash
+    git clone https://github.com/your-username/worker-management-app.git
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Navigate to the project directory:
+    ```bash
+    cd worker-management-app
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-### `npm run eject`
+4. Start the development server:
+    ```bash
+    npm start
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The app will now be running on [http://localhost:3000](http://localhost:3000).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## How to Use
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Open the app in your browser.
+2. Fill in the "Add Worker" form with the required information (name, surname, gender, wage).
+3. Click "Add" to add the worker to the list.
+4. If any information is missing or incorrect, a modal will appear with an error message.
+5. Clicking on the employee will delete the employee.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
