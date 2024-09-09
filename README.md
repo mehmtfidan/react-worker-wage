@@ -17,7 +17,6 @@ This application is a simple worker management tool built with React. It allows 
 
 - **Error Handling**: If any field is missing or invalid, the user is shown an error modal with a relevant message, ensuring that they fill the form correctly.
 
-- **Delete Workers**: Users can delete workers from the list by clicking on the worker's entry. Before deletion, the app confirms the action using a modal, preventing accidental deletions.
 
 ## Technologies Used
 
