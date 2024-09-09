@@ -2,9 +2,10 @@ import Card from "../UI/Card";
 
 const WorkerList = (props) => {
   const { workers, setWorkers } = props;
-  if(workers.length <1 ) {
+  if (workers.length < 1) {
     return;
   }
+
   const deleteWorker = (id) => {
     setWorkers(workers.filter((item) => item.id !== id));
   };
@@ -13,7 +14,9 @@ const WorkerList = (props) => {
     <Card addClass="mt-10">
       <ul>
         <li className="flex justify-between p-2">
-          <span className="font-bold">İsim</span>
+          <span className="font-bold">Ad</span>
+          <span className="font-bold">Soyad</span>
+          <span className="font-bold">Cinsiyet</span>
           <span className="font-bold">Maaş</span>
         </li>
         {workers.map((worker) => (
@@ -24,6 +27,8 @@ const WorkerList = (props) => {
             onClick={() => deleteWorker(worker.id)}
           >
             <span>{worker.name}</span>
+            <span>{worker.surname}</span>
+            <span>{worker.gender}</span>
             <span className="text-teal-700 font-medium">{worker.wage}tl</span>
           </li>
         ))}
