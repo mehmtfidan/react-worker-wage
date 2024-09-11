@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Button from "./Button";
 import Card from "./Card";
-import  ReactDOM  from "react-dom";
-
+import ReactDOM from "react-dom";
 
 const Backdrop = (props) => {
   return (
@@ -35,6 +34,23 @@ const ModalOverlay = (props) => {
 const ErrorModal = (props) => {
   const { onConfirm, error } = props;
   const { title, message } = error;
+  const cleanupRef = useRef();
+  useEffect(() => {
+    console.log("modal oluşturuldu!");
+    return () => {
+      if (cleanupRef.current) {
+        console.log("cmp kaldırıldı!");
+        props.setWorkers([]);
+      }
+    };
+  }, [cleanupRef, props]);
+
+  useEffect(() => {
+    return () => {
+      cleanupRef.current = true;
+    };
+  }, []);
+
   return (
     <React.Fragment>
       {ReactDOM.createPortal(
@@ -42,7 +58,7 @@ const ErrorModal = (props) => {
         document.getElementById("backdrop-root")
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay message={message} title={title} onConfirm={onConfirm}/>,
+        <ModalOverlay message={message} title={title} onConfirm={onConfirm} />,
         document.getElementById("overlay-root")
       )}
     </React.Fragment>
