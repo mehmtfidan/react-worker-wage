@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import ErrorModal from "../UI/ErrorModal";
 
 const AddWorker = (props) => {
-  const [enteredWorkerName, setEnteredWorkerName] = useState("");
-  const [enteredWage, setEnteredWage] = useState("");
   const [enteredSurname, setEnteredSurname] = useState("");
   const [enteredGender, setEnteredGender] = useState("");
   const [error, setError] = useState();
+  const nameInputRef = useRef();
+  const wageInputRef = useRef();
+
   const minimumWage = 5000;
   const addWorkerHandler = (e) => {
     e.preventDefault();
-    if (enteredWorkerName.trim().length === 0) {
+    if (nameInputRef.current.value.trim().length === 0) {
       setError({
         title: "İsim Alanı Zorunludur!",
         message: "Lütfen bir ad giriniz.",
@@ -34,7 +35,7 @@ const AddWorker = (props) => {
       return;
     }
 
-    if (+enteredWage < minimumWage) {
+    if (+wageInputRef.current.value < minimumWage) {
       setError({
         title: "Maaş Alanı Zorunludur!",
         message: `Lütfen ${minimumWage} değerinden büyük bir maaş değeri giriniz.`,
@@ -45,17 +46,17 @@ const AddWorker = (props) => {
     props.setWorkers((prevState) => [
       {
         id: Math.floor(Math.random() * 1000),
-        name: enteredWorkerName,
+        name: nameInputRef.current.value,
         gender: enteredGender,
         surname: enteredSurname,
-        wage: enteredWage,
+        wage: wageInputRef.current.value,
       },
       ...prevState,
     ]);
-    setEnteredWorkerName("");
+    nameInputRef.current.value = "";
     setEnteredSurname("");
     setEnteredGender("");
-    setEnteredWage("");
+    wageInputRef.current.value = "";
   };
 
   const errorHandler = () => {
@@ -63,7 +64,7 @@ const AddWorker = (props) => {
   };
 
   return (
-    <div>
+    <>
       {error && <ErrorModal onConfirm={errorHandler} error={error} />}
       <Card addClass="mt-10">
         <form className="flex flex-col gap-y-2" onSubmit={addWorkerHandler}>
@@ -75,8 +76,7 @@ const AddWorker = (props) => {
             className="max-w-[40rem] w-full mx-auto border p-2"
             placeholder="Çalışan adı yazınız"
             id="name"
-            onChange={(e) => setEnteredWorkerName(e.target.value)}
-            value={enteredWorkerName}
+            ref={nameInputRef}
           />
           <label htmlFor="surname" className="font-medium">
             Çalışan Soyadı
@@ -133,15 +133,14 @@ const AddWorker = (props) => {
             className="max-w-[40rem] w-full mx-auto border p-2"
             placeholder="Maaş miktarı yazınız"
             id="wage"
-            onChange={(e) => setEnteredWage(e.target.value)}
-            value={enteredWage}
+            ref={wageInputRef}
           />
           <Button className="mt-2" type="submit">
             Ekle
           </Button>
         </form>
       </Card>
-    </div>
+    </>
   );
 };
 
